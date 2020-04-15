@@ -23,14 +23,10 @@ namespace CoreLoader.Core
             harmony = new Harmony(ModGUID);
             harmony.PatchAll();
 			addClass();
-			FieldInfo normalDoor = AccessTools.Field(typeof(RoomVisual), "DoorNormal");
-			var newDoor = Resources.Load<Texture2D>("newDoor.png");
-			normalDoor.SetValue(normalDoor, newDoor);
 		}
 
         public void addClass()
         {
-			Debug.Log("Adding new class now");
 			CharacterClasses.AddItem(new CharacterClass
 			{
 				Id = CharacterClassType.Lancer + 1,
@@ -55,7 +51,6 @@ namespace CoreLoader.Core
 					player.Health.Health = player.Health.MaxHealth;
 				}
 			});
-			Debug.Log("New class added");
 		}
     }
 }

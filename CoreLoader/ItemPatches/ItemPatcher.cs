@@ -23,40 +23,28 @@ namespace CoreLoader.ItemPatches
         [HarmonyPostfix]
         static void addNewItem()
 		{
-			ItemType item = ItemBase.Types[(int)ItemId.HeartContainer];
-			item.OnFound = delegate (Item curItem, Player player)
+			ItemType itemType = ItemBase.Types[(int)ItemId.HeartContainer];
+			itemType.OnFound = delegate (Item curItem, Player player)
 			{
 				Damageable hp = player.Health;
 				hp.NetworkMaxHealth = hp.MaxHealth + 10f;
 				player.Health.Health += 10f;
 			};
-			ItemType itemType = new ItemType();
-			itemType.Id = ItemId.BowlerHat + 1;
-			itemType.Name = "Test Item"._();
-			itemType.Category = ItemCategory.Upgrade;
-			itemType.RequiredUnlock = Unlock.FighterVictory;
-			itemType.Description = "Bruh"._();
-			itemType.FlavorText = "This is the flavour text."._();
-			itemType.OnFound = delegate (Item itemUse, Player player)
-			{
-				Damageable health = player.Health;
-				health.NetworkMaxHealth = health.MaxHealth + 1f;
-				player.Health.Health += 1f;
-			};
+			itemType = AddItem((ItemId)157, "Test Item", ItemCategory.Upgrade, "Bruh", "This is the flavour text",
+				delegate (Item itemUse, Player player)
+				{
+					Damageable health = player.Health;
+					health.NetworkMaxHealth = health.MaxHealth + 1f;
+					health.Health += 1f;
+				});
 			ItemBase.AddItem(itemType);
-			itemType = new ItemType();
-			itemType.Id = ItemId.BowlerHat + 2;
-			itemType.Name = "Test Item 2"._();
-			itemType.Category = ItemCategory.Upgrade;
-			itemType.RequiredUnlock = Unlock.FighterVictory;
-			itemType.Description = "Electric Boogaloo"._();
-			itemType.FlavorText = "This is the flavour text."._();
-			itemType.OnFound = delegate (Item itemUse, Player player)
+			itemType = AddItem((ItemId)158, "Test Item 2", ItemCategory.Upgrade, "Electric Boogaloo", "This is the flavour text", 
+				delegate (Item itemUse, Player player)
 			{
 				Damageable health = player.Health;
 				health.NetworkMaxHealth = health.MaxHealth + 1f;
-				player.Health.Health += 1f;
-			};
+				health.Health += 1f;
+			});
 			ItemBase.AddItem(itemType);
 		}
     }

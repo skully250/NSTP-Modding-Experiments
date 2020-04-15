@@ -11,7 +11,6 @@ namespace CoreLoader.CharacterPatches
         static bool prefixEquipWeapon(Weapon __instance)
         {
             Player origPlayer = AccessTools.FieldRefAccess<Weapon, Player>("player").Invoke(__instance);
-            origPlayer = __instance.GetComponent<Player>();
             if ((int)origPlayer.CharacterClassType <= 8)
                 __instance.ProjectilePrefab = __instance.ClassProjecilePrefabs[(int)origPlayer.CharacterClassType];
             else
