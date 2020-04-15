@@ -29,26 +29,27 @@ namespace CoreLoader.Core
         {
 			CharacterClasses.AddItem(new CharacterClass
 			{
-				Id = CharacterClassType.Lancer + 1,
-				Name = "Test Class",
-				Description = "A test class to see if this works",
+				Id = (CharacterClassType)9,
+				Name = "Danmaku",
+				Description = "Danmaku class made for Millie",
 				IsPremium = false,
-				Level5 = ItemId.HeartContainer,
-				Level10 = ItemId.SpicyBoar,
-				Level15 = ItemId.DuelistsGauntlet,
-				Level20 = ItemId.WhiteLotus,
 				OnSpawn = delegate (Player player)
 				{
-					player.Coins = 26;
-					player.Keys = 1;
+					player.Coins = 0;
+					player.Keys = 0;
 					player.Bombs = 1;
 					player.Speed = 3f;
-					player.Damage = 5f;
-					player.BulletSpeed = 13f;
-					player.AttackRate = 8f;
+					player.Damage = 3f;
+					player.BulletSpeed = 35f;
+					player.AttackRate = 60f;
 					player.Range = 6f;
-					player.Health.NetworkMaxHealth = 1f;
+					player.Health.NetworkMaxHealth = 0.5f;
 					player.Health.Health = player.Health.MaxHealth;
+					if (player.isLocalPlayer)
+					{
+						player.CallCmdAddItem(ItemId.StaffOfLordSeigen, false);
+						player.CallCmdAddItem(ItemId.Seeker, false);
+					}
 				}
 			});
 		}
