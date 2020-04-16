@@ -1,9 +1,7 @@
 ﻿using BepInEx;
-using UnityEngine;
 using HarmonyLib;
 using Legend;
-using System;
-using System.Reflection;
+using CoreLoader.ItemPatches;
 
 namespace CoreLoader.Core
 {
@@ -32,6 +30,11 @@ namespace CoreLoader.Core
 				Id = (CharacterClassType)9,
 				Name = "Danmaku",
 				Description = "Danmaku class made for Millie",
+				Victory = (Unlock)54,
+				Level5 = ItemId.StaffOfLordSeigen,
+				Level10 = ItemId.FieldRepair,
+				Level15 = ItemId.Seeker,
+				Level20 = (ItemId)ItemEnum.DoublePen,
 				IsPremium = false,
 				OnSpawn = delegate (Player player)
 				{
@@ -47,8 +50,7 @@ namespace CoreLoader.Core
 					player.Health.Health = player.Health.MaxHealth;
 					if (player.isLocalPlayer)
 					{
-						player.CallCmdAddItem(ItemId.StaffOfLordSeigen, false);
-						player.CallCmdAddItem(ItemId.Seeker, false);
+						//Adding items if needed
 					}
 				}
 			});

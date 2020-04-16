@@ -71,6 +71,7 @@
     <Compile Include="Core\BasePatcher.cs" />
     <Compile Include="Core\CommandsPatcher.cs" />
     <Compile Include="Core\ConsolePatcher.cs" />
+    <Compile Include="ItemPatches\ItemEnum.cs" />
     <Compile Include="LevelPatches\ChestPatcher.cs" />
     <Compile Include="ItemPatches\ItemPatcher.cs" />
     <Compile Include="LevelPatches\LevelPatcher.cs" />

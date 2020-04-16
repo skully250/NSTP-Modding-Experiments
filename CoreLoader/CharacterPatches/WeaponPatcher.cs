@@ -12,13 +12,16 @@ namespace CoreLoader.CharacterPatches
         [HarmonyPrefix]
         static bool prefixEquipWeapon(Weapon __instance, ref Player ___player)
         {
-            if ((int)___player.CharacterClassType >= 8)
+            ___player = __instance.GetComponent<Player>();
+            if ((int)___player.CharacterClassType <= 8)
             {
-                ___player = __instance.GetComponent<Player>();
-                __instance.ProjectilePrefab = __instance.ClassProjecilePrefabs[(int)CharacterClassType.Fighter];
-                return false;
+                __instance.ProjectilePrefab = __instance.ClassProjecilePrefabs[(int)___player.CharacterClassType];
             }
-            return true;
+            else
+            {
+                __instance.ProjectilePrefab = __instance.ClassProjecilePrefabs[(int)CharacterClassType.Fighter];
+            }
+            return false;
         }
     }
 
