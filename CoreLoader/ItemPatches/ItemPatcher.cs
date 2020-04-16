@@ -38,12 +38,10 @@ namespace CoreLoader.ItemPatches
 					health.Health += 1f;
 				});
 			ItemBase.AddItem(itemType);
-			itemType = AddItem((ItemId)158, "Test Item 2", ItemCategory.Upgrade, "Electric Boogaloo", "This is the flavour text", 
+			itemType = AddItem((ItemId)158, "Penetration Boogaloo", ItemCategory.Upgrade, "Electric Boogaloo", "This is the flavour text", 
 				delegate (Item itemUse, Player player)
 			{
-				Damageable health = player.Health;
-				health.NetworkMaxHealth = health.MaxHealth + 1f;
-				health.Health += 1f;
+				player.Damage /= 1.5f;
 			});
 			ItemBase.AddItem(itemType);
 		}
